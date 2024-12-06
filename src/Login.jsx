@@ -15,13 +15,10 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/users/login',
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${process.env.API_URL}/login`, {
+        email,
+        password,
+      });
 
       // Save token to localStorage or sessionStorage
       if (rememberMe) {

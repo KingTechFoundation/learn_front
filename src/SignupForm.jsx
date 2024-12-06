@@ -43,12 +43,13 @@ const SignupForm = () => {
             clearInterval(interval);
             return 100;
           }
-          return prev + 1;
+          return prev + 10;
         });
       }, 200);
 
       const response = await axios.post(
-        'http://localhost:5000/api/users/signup',
+        `${process.env.API_URL}/signup`,
+
         formData
       );
 
