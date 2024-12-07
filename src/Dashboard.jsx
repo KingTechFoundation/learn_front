@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
+import { FaUserCircle } from 'react-icons/fa'; // Importing the user icon
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -9,6 +10,22 @@ const Dashboard = () => {
     '// Start coding in JavaScript!'
   );
   const [output, setOutput] = useState('');
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
+  // Fetch online users from the backend
+  useEffect(() => {
+    const fetchOnlineUsers = async () => {
+      try {
+        const response = await fetch(`${process.env.API_URL}/online-users`);
+        const data = await response.json();
+        setOnlineUsers(data); // Assuming the backend returns an array of users
+      } catch (error) {
+        console.error('Error fetching online users:', error);
+      }
+    };
+
+    fetchOnlineUsers();
+  }, []); // Empty dependency array to fetch only on mount
 
   // Combine HTML, CSS, and JavaScript into a single output
   useEffect(() => {
@@ -33,8 +50,8 @@ const Dashboard = () => {
   const loadExample = () => {
     setHtml(`
       <div id="app">
-        <h1>Hello, World! start coding with Hillary</h1>
-        <p>C.E.O KingTech Foundation </p>
+        <h1>Hello, World! Start coding with Hillary</h1>
+        <p>C.E.O KingTech Foundation</p>
         <button onclick="changeColor()">Click Me!</button>
       </div>
     `);
@@ -72,6 +89,21 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard-container'>
+      {/* Online users section */}
+      <div className='online-users'>
+        <h3>Online Users</h3>
+        {onlineUsers.length > 0 ? (
+          onlineUsers.map((user) => (
+            <div key={user.id} className='user'>
+              <FaUserCircle className='user-icon' />
+              <span>{user.name}</span>
+            </div>
+          ))
+        ) : (
+          <p>No users online</p>
+        )}
+      </div>
+
       <h1>Interactive Learning Dashboard</h1>
 
       {/* Load Example Button */}
