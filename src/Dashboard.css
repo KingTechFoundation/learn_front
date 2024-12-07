@@ -9,6 +9,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 20px;
+  color: #333;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* Navbar */
@@ -41,9 +45,44 @@ body {
   color: #ffc107;
 }
 
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Adjust for the navbar height */
+  right: -300px;
+  width: 300px;
+  height: calc(100% - 60px);
+  background: #fff;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #007bff;
+  margin-right: 10px;
+}
+
 /* Main Content */
 .main-content {
-  margin-top: 60px;
+  margin-top: 80px; /* Adjust for fixed navbar */
   padding: 20px;
   flex-grow: 1;
 }
@@ -66,11 +105,7 @@ body {
   flex: 1;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.half-screen {
-  flex: 1;
-  display: block;
+  justify-content: space-between;
 }
 
 .editor-wrapper {
@@ -111,9 +146,10 @@ body {
 /* Output Section */
 .output-section {
   flex: 1;
+  padding: 15px;
+  background-color: #f8f9fa;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -125,26 +161,34 @@ body {
   border-radius: 5px;
 }
 
-/* Sidebar (Optional Chat Section) */
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  background: white;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  transition: 0.3s ease-in-out;
-  z-index: 999;
+/* Buttons */
+.load-example-button,
+.run-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.sidebar.active {
-  right: 0;
+.load-example-button:hover,
+.run-button:hover {
+  background-color: #218838;
 }
 
-.sidebar h3 {
-  margin-top: 0;
+/* Code Styling */
+pre {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 10px;
+  font-size: 14px;
+  overflow-x: auto;
+  border-radius: 5px;
 }
 
 /* Responsive Design */
@@ -157,14 +201,18 @@ body {
     flex-direction: column;
   }
 
-  .editor-section {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
   .editor-wrapper,
   .output-section {
     flex: 1;
     min-width: 100%;
+  }
+
+  .sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .sidebar.active {
+    right: 0;
   }
 }
