@@ -33,7 +33,8 @@ const Dashboard = () => {
   const loadExample = () => {
     setHtml(`
       <div id="app">
-        <h1>Hello, World!</h1>
+        <h1>Hello, World! start coding with Hillary</h1>
+        <p>C.E.O KingTech Foundation </p>
         <button onclick="changeColor()">Click Me!</button>
       </div>
     `);
