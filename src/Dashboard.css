@@ -90,9 +90,9 @@ body {
 /* Editor and Output Section */
 .editor-output-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Side-by-side layout */
   gap: 20px;
-  height: 100%;
+  height: calc(100vh - 120px); /* Full height minus navbar and padding */
   position: relative;
 }
 
@@ -107,12 +107,13 @@ body {
   min-width: 300px;
   min-height: 200px;
   max-width: 100%;
-  max-height: calc(100vh - 120px); /* Navbar and padding */
+  max-height: calc(100vh - 120px); /* Adjusted for navbar and padding */
   border: 1px solid #ddd;
   border-radius: 5px;
   background: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  flex: 1; /* Equal space allocation */
 }
 
 .resizable:hover {
@@ -122,7 +123,6 @@ body {
 
 /* Editor Section */
 .editor-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
@@ -131,6 +131,7 @@ body {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.4s ease, opacity 0.4s ease;
+  flex: 1; /* Equal space allocation */
 }
 
 .editor-wrapper.collapsed {
@@ -166,13 +167,14 @@ body {
 
 /* Output Section */
 .output-section {
-  flex: 1;
   padding: 15px;
   background-color: #f8f9fa;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  flex: 1; /* Equal space allocation */
+  overflow: auto;
 }
 
 .output-section:hover {
@@ -212,25 +214,12 @@ pre {
 /* Responsive Design */
 @media (max-width: 768px) {
   .editor-output-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack sections vertically */
   }
 
-  .split-view {
-    flex-direction: column;
-  }
-
-  .editor-wrapper,
-  .output-section {
-    flex: 1;
-    min-width: 100%;
-  }
-
-  .sidebar {
-    width: 100%;
-    right: -100%;
-  }
-
-  .sidebar.active {
-    right: 0;
+  .resizable {
+    flex: none; /* Independent sizing in stacked layout */
+    height: auto;
+    width: 100%; /* Full width for smaller screens */
   }
 }
