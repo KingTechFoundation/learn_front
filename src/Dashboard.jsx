@@ -74,14 +74,14 @@ const Dashboard = () => {
         >
           {/* Editors */}
           <div
-            className={`editor-section ${
+            className={`editor-section resizable ${
               activeView === 'all' ? '' : 'half-screen'
             }`}
           >
             {['html', 'css', 'javascript'].map((lang) => (
               <div
                 key={lang}
-                className={`editor-wrapper ${
+                className={`editor-wrapper resizable ${
                   activeView === lang ? 'active-editor' : ''
                 }`}
                 style={{
@@ -119,7 +119,7 @@ const Dashboard = () => {
 
           {/* Output Section */}
           <div
-            className={`output-section ${
+            className={`output-section resizable ${
               activeView === 'all' ? '' : 'half-screen'
             }`}
             style={{
