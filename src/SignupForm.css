@@ -172,7 +172,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; /* Reduced height */
+  height: 25vh; /* Reduced height */
   background: linear-gradient(
     135deg,
     #f9f9f9,
@@ -199,12 +199,6 @@
   background: white; /* Clean white card */
   border-radius: 12px; /* Smooth corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle card shadow */
-}
-
-.success-message p {
-  font-size: 18px;
-  color: #333;
-  margin: 10px 0;
 }
 
 .success-message p:first-child {
