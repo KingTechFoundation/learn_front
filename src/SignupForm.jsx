@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './SignupForm.css';
 
 const SignupForm = ({ onClose }) => {
-  // onClose prop to handle close functionality
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -29,7 +28,7 @@ const SignupForm = ({ onClose }) => {
     const { full_name, email, password } = formData;
 
     if (!full_name || !email || !password) {
-      toast.error('All fields are required.');
+      toast.error('All fields are required.', { className: 'error-toast' });
       return;
     }
 
@@ -54,15 +53,17 @@ const SignupForm = ({ onClose }) => {
 
       setLoading(false);
       setRegistrationSuccess(true);
-      toast.success(response.data.message);
+      toast.success(response.data.message, { className: 'success-toast' });
 
       setFormData({ full_name: '', email: '', password: '' });
     } catch (error) {
       setLoading(false);
       if (error.response && error.response.data) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message, { className: 'error-toast' });
       } else {
-        toast.error('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again.', {
+          className: 'error-toast',
+        });
       }
     }
   };
@@ -82,22 +83,8 @@ const SignupForm = ({ onClose }) => {
   return (
     <div className='signup-form-container'>
       <ToastContainer />
-
-      {/* Close Button */}
-      <button
-        onClick={onClose}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'transparent',
-          border: 'none',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          color: '#333', // Customize the color as needed
-        }}
-      >
-        &times; {/* This is the close "×" symbol */}
+      <button onClick={onClose} className='close-button'>
+        &times;
       </button>
 
       <div className='form-header'>

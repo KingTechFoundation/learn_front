@@ -194,6 +194,36 @@
   max-width: 400px; /* Modal size */
 }
 
+/* Toast Styles */
+.success-toast {
+  background-color: #4caf50; /* Green background */
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.error-toast {
+  background-color: #f44336; /* Red background */
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Toast Container */
+.Toastify__toast-container {
+  font-family: 'Arial', sans-serif;
+}
+
+.Toastify__toast-body {
+  font-size: 1rem;
+}
+
+.Toastify__progress-bar {
+  background-color: #81c784; /* Light green progress bar */
+}
+
+/* Other styles (e.g., form and loader) remain unchanged */
+
 .success-message p:first-child {
   font-weight: bold; /* Make the "Registration Successful!" bold */
 }
