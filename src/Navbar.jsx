@@ -135,12 +135,23 @@ const Navbar = () => {
               {['Home', 'Courses', 'Login', 'Signup'].map((text, index) => (
                 <ListItem button onClick={toggleDrawer(false)} key={index}>
                   <ListItemText>
-                    <Link
-                      to={`/${text.toLowerCase()}`}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    <span
+                      onClick={
+                        text === 'Login'
+                          ? () => {
+                              closeModals();
+                              setShowLogin(true);
+                            }
+                          : text === 'Signup'
+                          ? () => {
+                              closeModals();
+                              setShowSignup(true);
+                            }
+                          : undefined
+                      }
                     >
                       {text}
-                    </Link>
+                    </span>
                   </ListItemText>
                 </ListItem>
               ))}
