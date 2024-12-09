@@ -181,7 +181,7 @@
   border-radius: 8px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
   margin: auto;
-  max-width: 80%; /* Constrain the container width */
+  max-width: 76%; /* Constrain the container width */
 }
 
 .success-message {
@@ -192,13 +192,6 @@
   text-align: center;
   width: 100%;
   max-width: 400px; /* Modal size */
-}
-.success-message {
-  text-align: center;
-  padding: 20px;
-  background: white; /* Clean white card */
-  border-radius: 12px; /* Smooth corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle card shadow */
 }
 
 .success-message p:first-child {
