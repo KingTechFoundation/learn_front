@@ -4,7 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './SignupForm.css';
 
-const SignupForm = () => {
+const SignupForm = ({ onClose }) => {
+  // onClose prop to handle close functionality
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -36,7 +37,6 @@ const SignupForm = () => {
       setLoading(true);
       setProgress(0);
 
-      // Simulate loader progress
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
@@ -49,7 +49,6 @@ const SignupForm = () => {
 
       const response = await axios.post(
         `${process.env.API_URL}/signup`,
-
         formData
       );
 
@@ -57,7 +56,6 @@ const SignupForm = () => {
       setRegistrationSuccess(true);
       toast.success(response.data.message);
 
-      // Reset the form
       setFormData({ full_name: '', email: '', password: '' });
     } catch (error) {
       setLoading(false);
@@ -73,11 +71,9 @@ const SignupForm = () => {
     return (
       <div className='success-message-container'>
         <div className='success-message'>
-          <h1>🎉 Registration Successful!</h1>
-          <p>
-            Please check your email for verification. We're excited to have you
-            on board!
-          </p>
+          <h1>✅</h1>
+          <p>Registration Successful!</p>
+          <p>Please check your email for verification.</p>
         </div>
       </div>
     );
@@ -86,9 +82,27 @@ const SignupForm = () => {
   return (
     <div className='signup-form-container'>
       <ToastContainer />
+
+      {/* Close Button */}
+      <button
+        onClick={onClose}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          background: 'transparent',
+          border: 'none',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          color: '#333', // Customize the color as needed
+        }}
+      >
+        &times; {/* This is the close "×" symbol */}
+      </button>
+
       <div className='form-header'>
-        <h2>Join Our E-Learning Community</h2>
-        <p>Sign up and start learning today!</p>
+        <h2>Unlock Your Potential</h2>
+        <p>Join a community of learners and start your journey today!</p>
       </div>
       {loading ? (
         <div className='loader'>
@@ -104,18 +118,18 @@ const SignupForm = () => {
               name='full_name'
               value={formData.full_name}
               onChange={handleChange}
-              placeholder='Enter your full name'
+              placeholder='Your Name'
               required
             />
           </div>
           <div className='form-group'>
-            <label>Email</label>
+            <label>Email Address</label>
             <input
               type='email'
               name='email'
               value={formData.email}
               onChange={handleChange}
-              placeholder='Enter your email'
+              placeholder='example@example.com'
               required
             />
           </div>
@@ -126,7 +140,7 @@ const SignupForm = () => {
               name='password'
               value={formData.password}
               onChange={handleChange}
-              placeholder='Enter your password'
+              placeholder='Create a password'
               required
             />
           </div>

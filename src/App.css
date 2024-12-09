@@ -1,0 +1,178 @@
+/* Light Theme */
+body.light-theme {
+  background-color: #f5f5f5; /* Light background for the platform */
+  color: #333; /* Dark text color for readability */
+}
+
+body.light-theme .AppBar {
+  background-color: #4caf50; /* Green theme for the header */
+  color: white;
+}
+
+body.light-theme .nav-link {
+  color: #333; /* Dark text for navigation links */
+}
+
+body.light-theme .nav-link:hover {
+  color: #4caf50; /* Green on hover for navigation links */
+}
+
+body.light-theme .login-modal-content {
+  background-color: #fff; /* White background for login modal */
+  color: #333; /* Dark text for the modal */
+}
+
+body.light-theme .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly dark overlay */
+}
+
+/* Dark Theme */
+body.dark-theme {
+  background-color: #121212; /* Dark background for better night-time usage */
+  color: #fff; /* White text for dark theme */
+}
+
+body.dark-theme .AppBar {
+  background-color: #222222; /* Darker AppBar background */
+  color: #fff;
+}
+
+body.dark-theme .nav-link {
+  color: #bbb; /* Lighter gray for nav links in dark mode */
+}
+
+body.dark-theme .nav-link:hover {
+  color: #4caf50; /* Green on hover for dark theme navigation */
+}
+
+body.dark-theme .login-modal-content {
+  background-color: #333; /* Dark background for login modal */
+  color: #fff; /* White text inside the modal */
+}
+
+body.dark-theme .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for the dark theme */
+}
+
+/* Add additional styles for buttons, inputs, etc. */
+button {
+  background-color: #4caf50; /* Consistent button color for both themes */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker shade of green on hover */
+}
+
+input,
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #4caf50; /* Highlighting input fields with the theme color */
+}
+
+/* Optional: Navbar-specific styles that inherit the theme */
+.navbar {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-theme .navbar {
+  background-color: #fff;
+  color: #000;
+}
+
+body.dark-theme .navbar {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Styles for the floating login modal */
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Overlay */
+.signup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it's on top of other content */
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Dark background with some transparency */
+  z-index: 1;
+  cursor: pointer; /* Makes it clickable */
+}
+
+.signup-modal-content {
+  position: relative;
+  z-index: 2; /* Places modal content above the overlay */
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px; /* Control modal width */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  height: 2opx;
+  overflow: hidden;
+}
+
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #ffffff;
+  --text-color: #333;
+  --error-color: #f44336;
+  --background-color: #45a049;
+  --box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1,
+h2,
+.MuiButton-root {
+  animation: fadeIn 1.5s ease-in-out;
+}

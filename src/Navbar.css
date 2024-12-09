@@ -1,194 +1,86 @@
-/* Navbar Container */
+/* General Navbar Styling */
 .navbar {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  font-family: 'Arial', sans-serif;
+  padding: 10px 20px;
 }
 
-.navbar-container {
+.navbar img {
+  height: 40px;
+}
+
+.desktop-links {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Logo */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-logo img {
-  width: 40px;
-  margin-right: 10px;
-}
-
-.navbar-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Navigation Links */
-.navbar-links {
-  display: flex;
-  align-items: center;
   gap: 20px;
-}
-
-.navbar-link {
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  transition: color 0.3s;
-}
-
-.navbar-link:hover {
-  color: #0070f3;
-}
-
-/* Dropdown */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-btn {
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: #333;
-  transition: color 0.3s;
-}
-
-.dropdown-btn:hover {
-  color: #0070f3;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none;
-  flex-direction: column;
-  width: 200px;
-  z-index: 10;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: flex;
-}
-
-.dropdown-item {
-  padding: 10px;
-  text-decoration: none;
-  color: #333;
-  font-size: 0.9rem;
-  transition: background 0.3s;
-}
-
-.dropdown-item:hover {
-  background: #f9f9f9;
-}
-
-/* Right Section */
-.navbar-right {
-  display: flex;
   align-items: center;
-  gap: 15px;
 }
 
-.btn {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  font-weight: bold;
+.nav-link {
   text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s;
+  color: inherit;
+  font-size: 16px;
+  position: relative;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
 }
 
-.btn-outline {
-  border: 2px solid #0070f3;
-  color: #0070f3;
-  background: none;
+.nav-link:hover {
+  color: #007bff;
 }
 
-.btn-outline:hover {
-  background: #0070f3;
-  color: #ffffff;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #007bff;
+  transition: width 0.3s ease;
 }
 
-.btn-primary {
-  background: #0070f3;
-  color: #ffffff;
-  border: none;
+.nav-link:hover::after {
+  width: 100%;
 }
 
-.btn-primary:hover {
-  background: #005bb5;
-}
-
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
+.theme-toggle {
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.hamburger-line {
-  width: 25px;
-  height: 3px;
-  background: #333;
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .desktop-links {
+    display: none; /* Hide desktop links */
+  }
+
+  .menu-icon {
+    display: block; /* Show the menu icon */
+  }
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  /* Hide navbar title on small screens */
-  .navbar-title {
-    display: none;
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none; /* Hide the menu icon for larger screens */
   }
+}
 
-  /* Align menu items vertically and hide by default */
-  .navbar-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #ffffff;
-    flex-direction: column;
-    width: 100%;
-    display: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-top: 2px solid #0070f3;
-  }
+/* Drawer Menu */
+.drawer {
+  width: 250px;
+}
 
-  /* Show menu if open */
-  .navbar-links.open {
-    display: flex;
-  }
+.drawer a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+  padding: 10px 20px;
+  display: block;
+}
 
-  /* Display hamburger menu */
-  .hamburger {
-    display: flex;
-  }
-
-  /* Button adjustments for small screens */
-  .navbar-right {
-    display: none;
-  }
+.drawer a:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
 }
