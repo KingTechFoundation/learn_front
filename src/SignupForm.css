@@ -172,8 +172,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full screen height */
-  background-color: rgba(0, 0, 0, 0.1); /* Slightly darkened background */
+  height: 50vh; /* Reduced height */
+  background: linear-gradient(
+    135deg,
+    #f9f9f9,
+    #e3e3e3
+  ); /* Subtle gradient background */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+  margin: auto;
+  max-width: 80%; /* Constrain the container width */
 }
 
 .success-message {
@@ -185,11 +193,12 @@
   width: 100%;
   max-width: 400px; /* Modal size */
 }
-
-.success-message h1 {
-  font-size: 50px;
-  color: #28a745; /* Green for success */
-  margin-bottom: 20px;
+.success-message {
+  text-align: center;
+  padding: 20px;
+  background: white; /* Clean white card */
+  border-radius: 12px; /* Smooth corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle card shadow */
 }
 
 .success-message p {
