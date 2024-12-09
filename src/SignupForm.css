@@ -213,6 +213,7 @@
 .Toastify__toast-container {
   z-index: 9999; /* Set a high z-index value */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 70px;
 }
 
 .Toastify__toast-body {
