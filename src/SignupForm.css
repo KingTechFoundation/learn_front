@@ -209,9 +209,10 @@
   border-radius: 8px;
 }
 
-/* Toast Container */
+/* Ensure toast notifications appear above other elements */
 .Toastify__toast-container {
-  font-family: 'Arial', sans-serif;
+  z-index: 9999; /* Set a high z-index value */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .Toastify__toast-body {
