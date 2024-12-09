@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-//import './ForgotPassword.css'; // Styling for this component
+import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css';
+import './ForgotPassword.css'; // Apply custom CSS if needed
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setMessage('');
 
     try {
       await axios.post(`${process.env.API_URL}/request-password-reset`, {
         email,
       });
-      setMessage('Password reset email sent! Please check your inbox.');
+      toast.success('Password reset email sent! Please check your inbox.', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000,
+      });
+      setEmail('');
     } catch (err) {
-      setError(
-        err.response?.data?.message || 'Something went wrong. Please try again.'
+      toast.error(
+        err.response?.data?.message ||
+          'Something went wrong. Please try again.',
+        {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000,
+        }
       );
     } finally {
       setLoading(false);
@@ -32,9 +39,6 @@ const ForgotPassword = () => {
     <div className='forgot-password-container'>
       <form onSubmit={handleSubmit} className='forgot-password-form'>
         <h2>Forgot Password</h2>
-        {message && <p className='success-message'>{message}</p>}
-        {error && <p className='error-message'>{error}</p>}
-
         <div className='form-group'>
           <label htmlFor='email'>Enter your email</label>
           <input
@@ -46,11 +50,12 @@ const ForgotPassword = () => {
             required
           />
         </div>
-
         <button type='submit' className='submit-button' disabled={loading}>
           {loading ? 'Sending...' : 'Submit'}
         </button>
       </form>
+      {/* ToastContainer must be included for the toast notifications */}
+      <ToastContainer />
     </div>
   );
 };

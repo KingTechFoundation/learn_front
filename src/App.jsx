@@ -20,7 +20,7 @@ const App = () => {
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route
-            path='/reset-password/:token'
+            path='/reset-password/:resetToken'
             element={<ResetPasswordPage />}
           />
         </Routes>
