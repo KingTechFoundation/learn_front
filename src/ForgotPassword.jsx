@@ -36,10 +36,10 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className='forgot-password-container'>
-      <form onSubmit={handleSubmit} className='forgot-password-form'>
+    <div className='forgot-password-containerz'>
+      <form onSubmit={handleSubmit} className='forgot-password-formz'>
         <h2>Forgot Password</h2>
-        <div className='form-group'>
+        <div className='form-groupz'>
           <label htmlFor='email'>Enter your email</label>
           <input
             type='email'
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
             required
           />
         </div>
-        <button type='submit' className='submit-button' disabled={loading}>
+        <button type='submit' className='submit-buttonz' disabled={loading}>
           {loading ? 'Sending...' : 'Submit'}
         </button>
       </form>

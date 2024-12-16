@@ -8,39 +8,13 @@
   --box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.user-info {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-.profile {
-  font-size: 1.5rem;
-}
-
-.profile-icon {
-  font-size: 2rem;
-  margin-right: 10px;
-}
-
-.role {
-  font-size: 1.2rem;
-  color: gray;
-}
-
-.welcoming-message {
-  margin-top: 10px;
-  font-style: italic;
-  color: #4caf50;
-}
-
 .login-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  background: var(--secondary-color);
+  background: linear-gradient(135deg, var(--primary-color), #2575fc);
   padding: 2rem;
   border-radius: 12px;
   width: 90%;
@@ -59,7 +33,7 @@
   margin-bottom: 1rem;
   font-size: 1.8rem;
   text-align: center;
-  color: var(--primary-color);
+  color: white;
 }
 
 .form-group {
@@ -93,7 +67,7 @@
 }
 
 .login-button {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), #204a92);
   color: var(--secondary-color);
   font-size: 1rem;
   font-weight: bold;
@@ -105,7 +79,7 @@
 }
 
 .login-button:hover {
-  background: #45a049;
+  background: linear-gradient(135deg, var(--primary-color), #2575fc);
 }
 
 .forgot-password {
@@ -115,7 +89,7 @@
 
 .forgot-password a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: white;
   font-weight: bold;
 }
 

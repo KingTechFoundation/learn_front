@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {
-  FaUserCircle,
-  FaEnvelope,
-  FaComments,
-  FaBars,
-  FaExpandAlt,
-} from 'react-icons/fa';
+import { FaArrowsAlt, FaCompress } from 'react-icons/fa';
+import logo from './images/programmer.png';
+import Logout from './Logout';
+import { FaUserCircle, FaExpandAlt, FaUsers } from 'react-icons/fa';
 import Editor from '@monaco-editor/react';
+import OnlineUsers from './OnlineUsers'; // Import OnlineUsers component
 import './Dashboard.css';
+import Sidebar from './Sidebar';
 
 const Dashboard = () => {
   const [html, setHtml] = useState('<!-- Start coding in HTML! -->');
@@ -15,9 +14,20 @@ const Dashboard = () => {
   const [javascript, setJavascript] = useState(
     '// Start coding in JavaScript!'
   );
+
   const [output, setOutput] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const [activeView, setActiveView] = useState('all'); // Options: 'all', 'html', 'css', 'javascript'
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeView, setActiveView] = useState('all');
+  // Options: 'all', 'html', 'css', 'javascript'
+  const [fullName, setFullName] = useState('');
+  const [showOnlineUsers, setShowOnlineUsers] = useState(false); // State to toggle online users dropdown
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev);
+  };
 
   // Fetch online users from the backend
   useEffect(() => {
@@ -53,20 +63,93 @@ const Dashboard = () => {
     return () => clearTimeout(timeout);
   }, [html, css, javascript]);
 
+  // Retrieve user full name from storage
+  useEffect(() => {
+    const storedFullName =
+      localStorage.getItem('userFullName') ||
+      sessionStorage.getItem('userFullName');
+    setFullName(storedFullName);
+  }, []);
+
+  const toggleOnlineUsers = () => {
+    setShowOnlineUsers((prev) => !prev); // Toggle dropdown visibility
+  };
+
   return (
     <div className='dashboard-container'>
+      {/* Sidebar: Show only if isSidebarOpen is true */}
+      {isSidebarOpen && <Sidebar />}
+      <Sidebar className={isSidebarOpen ? 'visible' : ''} />
+
       {/* Navbar */}
       <nav className='navbar'>
-        <div className='navbar-brand'>E-Learning Dashboard</div>
+        <div className='navbar-brand'>
+          <img src={logo} />
+        </div>
+
         <div className='navbar-icons'>
-          <FaComments className='nav-icon' />
-          <FaEnvelope className='nav-icon' />
-          <FaBars className='nav-icon' />
+          <div className='profile-section'>
+            <FaUserCircle className='profile-icon' />
+            <span className='profile-name'>{fullName}</span>
+          </div>
+
+          {/* Online Users Button */}
+          <div className='online-users-btn' onClick={toggleOnlineUsers}>
+            <FaUsers className='nav-icon' />
+            <span>Online({onlineUsers.length})</span>
+          </div>
+
+         
         </div>
       </nav>
 
+      {/* Dropdown for online users */}
+      {showOnlineUsers && (
+        <div className='online-users-dropdown'>
+          <OnlineUsers onlineUsers={onlineUsers} />
+        </div>
+      )}
+
       {/* Main Content */}
-      <div className='main-content'>
+      <div className={`main-content ${isFullscreen ? 'fullscreen' : ''}`}>
+        {/* Fullscreen Icon in the top-right corner */}
+        <span
+          className='fullscreen-toggle'
+          onClick={toggleFullscreen}
+          style={{
+            position: 'absolute',
+            top: '4px',
+            right: '10px',
+            fontSize: '25px',
+            cursor: 'pointer',
+            color: '#fff',
+          }}
+        >
+          {isFullscreen ? (
+            <FaCompress /> // Icon for exiting fullscreen
+          ) : (
+            <FaArrowsAlt /> // Icon for fullscreen
+          )}
+        </span>
+
+        {/* Optionally, if you want a button at the bottom right to exit fullscreen */}
+        {isFullscreen && (
+          <span
+            className='exit-fullscreen-toggle'
+            onClick={toggleFullscreen}
+            style={{
+              position: 'fixed', // Use fixed positioning relative to the viewport
+              bottom: '2px', // Position at the bottom of the viewport
+              right: '10px', // Position at the right of the viewport
+              fontSize: '20px', // Icon size
+              cursor: 'pointer',
+              color: '#fff',
+              zIndex: 1000, // Ensure it is above other content
+            }}
+          >
+            <FaCompress /> {/* Icon for exiting fullscreen */}
+          </span>
+        )}
         <div
           className={`editor-output-container ${
             activeView !== 'all' ? 'split-view' : ''
@@ -101,7 +184,7 @@ const Dashboard = () => {
                   />
                 </div>
                 <Editor
-                  height='200px'
+                  height='600px'
                   language={lang}
                   theme='vs-dark'
                   value={
@@ -127,7 +210,6 @@ const Dashboard = () => {
                 activeView === 'all' || activeView !== 'all' ? 'block' : 'none',
             }}
           >
-            <h3>Live Output</h3>
             <iframe
               srcDoc={output}
               title='Code Output'

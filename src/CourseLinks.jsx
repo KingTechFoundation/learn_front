@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './CourseLinks.css';
+//import './CourseLinks.css';
 
 const CourseLinks = () => {
   const courses = [

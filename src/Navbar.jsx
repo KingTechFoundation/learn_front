@@ -65,7 +65,7 @@ const Navbar = () => {
                 whiteSpace: 'nowrap',
               }}
             >
-              E-Learning Platform
+              codelearn
             </Typography>
           </div>
 

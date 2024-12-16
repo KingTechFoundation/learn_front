@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { ToastContainer, toast } from 'react-toastify'; // Import Toastify for notifications
-import 'react-toastify/dist/ReactToastify.css'; // Import default styles for Toastify
-import './Login.css'; // Create a CSS file for styling
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,24 +25,31 @@ const Login = () => {
         password,
       });
 
-      // Save token to localStorage or sessionStorage
-      if (rememberMe) {
-        localStorage.setItem('authToken', response.data.token);
-      } else {
-        sessionStorage.setItem('authToken', response.data.token);
+      // Extract token and user data
+      const { token, user } = response.data;
+
+      // Check if the response contains the token and user
+      if (!token || !user) {
+        throw new Error('No token or user data received.');
       }
 
-      // Notify user about successful login using toast
-      toast.success('Login successful! Redirecting to dashboard...');
+      // Save token and user data
+      if (rememberMe) {
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('userFullName', user.full_name);
+      } else {
+        sessionStorage.setItem('authToken', token);
+        sessionStorage.setItem('userFullName', user.full_name);
+      }
 
-      // Navigate to dashboard
+      // Notify user and redirect
+      toast.success(`Welcome, ${user.full_name}! Redirecting to dashboard...`);
       navigate('/dashboard');
     } catch (err) {
-      // Handle error gracefully and show toast notification
-      setError(
-        err.response?.data?.message || 'Something went wrong. Please try again.'
-      );
-      toast.error(error || 'An error occurred. Please try again.');
+      const errorMessage =
+        err.response?.data?.message || 'Login failed. Try again.';
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -52,10 +59,7 @@ const Login = () => {
     <div className='login-container'>
       <form onSubmit={handleSubmit} className='login-form'>
         <h2>Login</h2>
-
-        {/* Display error message if there is any */}
         {error && <p className='error-message'>{error}</p>}
-
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input
@@ -67,7 +71,6 @@ const Login = () => {
             required
           />
         </div>
-
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input
@@ -79,7 +82,6 @@ const Login = () => {
             required
           />
         </div>
-
         <div className='form-remember-me'>
           <label>
             <input
@@ -90,17 +92,13 @@ const Login = () => {
             Remember Me
           </label>
         </div>
-
         <button type='submit' className='login-button' disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-
         <p className='forgot-password'>
           <a href='/forgot-password'>Forgot Password?</a>
         </p>
       </form>
-
-      {/* Toastify container to display notifications */}
       <ToastContainer />
     </div>
   );

@@ -1,0 +1,44 @@
+/* Sidebar */
+.sidebar {
+  min-width: 200px;
+  max-width: 13%; /* Prevent sidebar from exceeding half the container's width */
+  background-color: #2c3e50; /* Dark modern blue */
+  color: #ffffff;
+  padding: 20px;
+
+  border: 1px solid white; /* Slight space from left with a solid white border */
+  position: fixed;
+  top: 60px; /* Sidebar starts immediately below the navbar */
+  left: 1px; /* Slight space from the left */
+  height: calc(
+    100vh - 60px
+  ); /* Full height of the screen minus the navbar height */
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 1; /* Ensure the sidebar is always on top */
+  box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1); /* White border shadow for modern effect */
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+  background-color: white;
+}

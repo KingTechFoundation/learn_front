@@ -1,94 +1,150 @@
 /* General Styles */
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;
+  overflow: hidden; /* Removes scrollbars from the entire page */
+  width: 100vw; /* Ensures body takes the full width */
 }
 
-.dashboard-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 20px;
-  color: #333;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* Navbar */
+/* General Navbar Styles */
 .navbar {
+ width: 100%;
+  
   position: fixed;
   top: 0;
-  width: 100%;
-  background: #007bff;
-  color: white;
-  padding: 10px 20px;
+  left: 1px;
+ 
+  border-left: 1px solid #fff;
+
+  height: 59.5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  background-color: #2c3e50; /* Dark modern blue */
+  color: white;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Brand Section */
 .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: bold;
-}
-
-.navbar-icons .nav-icon {
-  margin-left: 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
+  white-space: nowrap;
   color: white;
 }
 
+.navbar-brand.hidden {
+  display: none;
+}
+
+.nav-icon {
+  font-size: 22px;
+  cursor: pointer;
+  color: #ecf0f1; /* Light gray for icons */
+  transition: color 0.3s ease;
+}
+
 .nav-icon:hover {
-  color: #ffc107;
+  color: #1abc9c; /* Modern green highlight */
 }
 
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 60px; /* Adjust for the navbar height */
-  right: -300px;
-  width: 300px;
-  height: calc(100% - 60px);
-  background: #fff;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: 0.3s ease-in-out;
-  z-index: 999;
-}
-
-.sidebar.active {
-  right: 0;
-}
-
-.sidebar h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.user {
+/* Profile Section */
+.profile-section {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align icon and name */
+  justify-content: center;
+  gap: 5px; /* Add spacing between icon and name */
 }
 
-.user-icon {
+.profile-icon {
   font-size: 24px;
-  color: #007bff;
-  margin-right: 10px;
+  cursor: pointer;
 }
 
-/* Main Content */
+.profile-name {
+  font-size: 14px; /* Smaller font size for the name */
+  font-weight: bold;
+  white-space: nowrap; /* Prevents text wrapping */
+  color: #ecf0f1; /* Light gray for better visibility */
+}
+
+/* Align other navbar content */
+.navbar-icons {
+ display: flex;
+  gap: 20px;
+  align-items: center;
+ 
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .navbar-brand {
+    display: none; /* Hide the brand text on small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-name {
+    display: none; /* Hide the profile name on smaller screens */
+  }
+
+  .nav-icon {
+    font-size: 18px; /* Adjust icon sizes for small screens */
+  }
+}
+
+/* Main Dashboard Container */
+.dashboard-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* Sidebar and main-content side-by-side */
+  min-height: 100vh; /* Full height of the viewport */
+  padding: 0 20px 20px; /* Adjust padding to control space inside the container */
+  color: #050222;
+  margin-left: 1px; /* Slight space from the left */
+  overflow: hidden; /* Prevent content overflow */
+  position: relative; /* Ensure positioning works correctly */
+}
 .main-content {
-  margin-top: 80px; /* Adjust for fixed navbar */
+  flex-grow: 1; /* Occupy the remaining space */
   padding: 20px;
-  flex-grow: 1;
+  background-color: #2c3e50;
+  color: #ffffff;
+  border: 2px solid white;
+  border-radius: 8px;
+  overflow-y: auto; /* Enable vertical scrollbar */
+  overflow-x: hidden; /* Disable horizontal scrollbar */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* To ensure it starts below the navbar */
+  top: 60px; /* Start right below the navbar */
+  margin-left: 210px; /* Space for the sidebar width */
+  margin-right: 20px; /* Take up the remaining space on the right */
+  height: 100vh; /* Full height of the viewport */
+  box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1); /* White border shadow for modern effect */
+}
+.main-content.fullscreen {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw; /* Fullscreen width */
+  height: 100vh; /* Fullscreen height */
+  margin: 0;
+  padding: 0;
+  z-index: 1000; /* Bring above other elements */
+  border-radius: 0; /* Remove rounded corners in fullscreen */
 }
 
 /* Editor and Output Section */
 .editor-output-container {
+  margin-top: 10px;
   display: flex;
   flex-direction: row; /* Side-by-side layout */
   gap: 20px;
@@ -167,38 +223,14 @@ body {
 
 /* Output Section */
 .output-section {
-  padding: 15px;
+  padding: 5px;
   background-color: #f8f9fa;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
   flex: 1; /* Equal space allocation */
   overflow: auto;
-}
-
-.output-section:hover {
-  background-color: #e9ecef;
-}
-
-/* Buttons */
-.load-example-button,
-.run-button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.load-example-button:hover,
-.run-button:hover {
-  background-color: #218838;
 }
 
 /* Code Styling */
