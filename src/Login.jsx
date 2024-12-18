@@ -20,9 +20,12 @@ const Login = () => {
     setError('');
 
     try {
+      const deviceId = navigator.userAgent; // Extract device identifier (user-agent)
+
       const response = await axios.post(`${process.env.API_URL}/login`, {
         email,
         password,
+        deviceId, // Send device ID to the backend for validation
       });
 
       // Extract token and user data

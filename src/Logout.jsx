@@ -17,10 +17,12 @@ const Logout = () => {
         return toast.error('No user is logged in.');
       }
 
+      const deviceId = navigator.userAgent; // Extract device identifier (user-agent)
+
       // Send logout request to the backend
       const response = await axios.post(
         `${process.env.API_URL}/logout`,
-        {},
+        { deviceId }, // Optionally, send deviceId for session verification
         {
           headers: {
             Authorization: `Bearer ${token}`, // Send JWT token with the request
@@ -47,7 +49,11 @@ const Logout = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button onClick={handleLogout} className='logout-button'>
+      Logout
+    </button>
+  );
 };
 
 export default Logout;

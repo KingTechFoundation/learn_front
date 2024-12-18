@@ -88,7 +88,7 @@ const Dashboard = () => {
         </div>
 
         <div className='navbar-icons'>
-          {/* Online Users Button */}
+         
           <div className='online-users-btn' onClick={toggleOnlineUsers}>
             <FaUsers className='nav-icon' />
             <span>Online({onlineUsers.length})</span>
