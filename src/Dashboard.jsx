@@ -88,18 +88,16 @@ const Dashboard = () => {
         </div>
 
         <div className='navbar-icons'>
-          <div className='profile-section'>
-            <FaUserCircle className='profile-icon' />
-            <span className='profile-name'>{fullName}</span>
-          </div>
-
           {/* Online Users Button */}
           <div className='online-users-btn' onClick={toggleOnlineUsers}>
             <FaUsers className='nav-icon' />
             <span>Online({onlineUsers.length})</span>
           </div>
 
-         
+          <div className='profile-section'>
+            <FaUserCircle className='profile-icon' />
+            <span className='profile-name'>{fullName}</span>
+          </div>
         </div>
       </nav>
 
